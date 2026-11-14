@@ -14,6 +14,12 @@ addLayer("l", {
             unlocked() {return player.l.unlocked || hasUpgrade('p', 23)} // Determines if you can use the hotkey, optional
         }
     ],
+    doReset(resettingLayer){
+        let keep = [];
+        if (layers[resettingLayer].row > this.row) {
+            layerDataReset(this.layer, keep)
+        }
+    },
     color: "#575757",
     requires: new Decimal('500'), // Can be a function that takes requirement increases into account
     resource: "Layer Points", // Name of prestige currency
@@ -27,7 +33,8 @@ addLayer("l", {
         if (hasAchievement('a', 23)) mult = mult.times('1.5')
         if (hasAchievement('a', 24)) mult = mult.times('2.5')
         // Prestige Upgrades
-        // blank for now
+        if (hasUpgrade('p', 32)) mult = mult.times('5')
+        if (hasUpgrade('p', 33)) mult = mult.times('50')
         // Power Upgrades
         if (hasUpgrade('w', 14)) mult = mult.times(upgradeEffect('w', 14))
         if (hasUpgrade('w', 25)) mult = mult.times(upgradeEffect('w', 25))
@@ -38,7 +45,11 @@ addLayer("l", {
         // Layer Fragment Upgrades
         if (hasUpgrade('lf', 11)) mult = mult.times('2')
         if (hasUpgrade('lf', 21)) mult = mult.times('5')
-        if (getBuyableAmount('lf', 11).gt(0) && !hasUpgrade('lf', 15)) mult = mult.times(getBuyableAmount('lf', 11).times(1.1)); else if (getBuyableAmount('lf', 11).gt(0) && hasUpgrade('lf', 15)) mult = mult.times(getBuyableAmount('lf', 11).times(1.25))
+        if (hasUpgrade('lf', 41)) mult = mult.times('10')
+        mult = mult.times(buyableEffect('lf', 11));
+        if (hasChallenge('lf', 11)) mult = mult.times('500')
+        // Challenges
+        if (inChallenge('lf', 11)) mult = mult.div('2')
         // After Other Effects Upgrades
         if (hasUpgrade('p', 21) && hasUpgrade('p', 25)) mult = mult.times(upgradeEffect('p', 21)/2)
         return mult
@@ -51,6 +62,12 @@ addLayer("l", {
     displayRow: 'side',
     layerShown(){return player.l.unlocked || hasUpgrade('p', 23)},
     upgrades: {
+        99: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {return false},
+            cost: new Decimal('1e100'),
+        },
         11: {
             title: "Layers...",
             description: "What do they mean? 2x Prestige Points",
@@ -88,6 +105,7 @@ addLayer("l", {
             cost: new Decimal(100),
             effect() {
                 let effect = player[this.layer].points.add(1).pow(0.75).min(50)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
@@ -111,9 +129,70 @@ addLayer("l", {
             cost: new Decimal(5000),
             effect() {
                 let effect = player[this.layer].points.add(1).pow(0.65).min(75)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" },
+        },
+        31: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        32: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        33: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        34: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        35: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        41: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        42: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        43: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        44: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
+        },
+        45: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {if (hasUpgrade('s', 45) && hasUpgrade('lf', 45)) return true; else return false},
+            cost: new Decimal('1e100'),
         },
     },
 })

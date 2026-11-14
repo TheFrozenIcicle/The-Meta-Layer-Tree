@@ -16,12 +16,24 @@ addLayer("w", {
     ],
     doReset(resettingLayer) {
         let keep = [];
-        if (hasUpgrade('lf', 14)) keep.push('upgrades')
-        if (layers[resettingLayer].row > this.row && resettingLayer == "l") { 
+        let keptUpgrades = [];
+        if (resettingLayer == "l") { 
+            if (hasUpgrade('lf', 14)) keep.push('upgrades')
+            if (hasUpgrade('w', 13)) keptUpgrades.push(13)
+            if (hasUpgrade('w', 15)) keptUpgrades.push(15)
             layerDataReset(this.layer, keep);
-                
+            player[this.layer].upgrades.push(...keptUpgrades)
+        }
+        else if (layers[resettingLayer].row > this.layer) {
+            layerDataReset(this.layer, keep);
         }
         //anything u place here is for keeping specific things, like if(hasUpgrade('x',99))player.y.upgrades.push(11) if that makes sense
+    },
+    passiveGeneration() {
+        let gen = 0
+        if (!hasUpgrade('lf', 44)){gen=0}
+        else if (!hasUpgrade('p', 99)){gen=2.5}
+        return gen
     },
     color: "#F0FF2D",
     branches: "s",
@@ -34,7 +46,8 @@ addLayer("w", {
     gainMult() { // Calculate the multiplier for main currency from bonuses
         let mult = new Decimal(1)
         // Prestige Upgrade
-        // Blank
+        if (hasUpgrade('p', 33)) mult = mult.times('50')
+        if (hasUpgrade('p', 42)) mult = mult.times(upgradeEffect('p', 42))
         // Power Upgrades
         if (hasUpgrade('w', 12)) mult = mult.times('1.25')
         if (hasUpgrade('w', 21)) mult = mult.times(upgradeEffect('w', 21))
@@ -43,19 +56,28 @@ addLayer("w", {
         // System Upgrades
         if (hasUpgrade('s', 11)) mult = mult.times('10')
         if (hasUpgrade('s', 22)) mult = mult.times('5')
+        if (hasUpgrade('s', 34)) mult = mult.times(upgradeEffect('s', 34))
+        if (hasUpgrade('s', 43)) mult = mult.pow('1.5')
         // Layer Upgrades
         // Blank
         // Layer Fragment Upgrades
-        // Blank
+        if (hasUpgrade('lf', 15)) mult = mult.times('10')
+        if (hasChallenge('lf', 11)) mult = mult.times('500')
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
         let exp = new Decimal(1)
         return exp
     },
-    row: 1, // Row the layer is in on the tree (0 is the first row)
+    row: 2, // Row the layer is in on the tree (0 is the first row)
     layerShown(){return player.w.unlocked || hasUpgrade('lf', 13)},
     upgrades: {
+        99: {
+            title: "placeholder",
+            description: "placeholder",
+            unlocked() {return false},
+            cost: new Decimal('1e100'),
+        },
         11: {
             title: "Another Layer!",
             description: "FINALLY! 1.25x Points and 1.5x Prestige Points",
@@ -68,7 +90,7 @@ addLayer("w", {
         },
         13: {
             title: "Maybe I Was Wrong.",
-            description: "Keep Prestige Upgrades on <p><s>Layer</s></p> LAYER FRAGMENTS?????/Watt Resets",
+            description: "Keep the First Row Prestige Upgrades on Layer/Watt Resets",
             cost: new Decimal('10'),
         },
         14: {
@@ -77,6 +99,7 @@ addLayer("w", {
             cost: new Decimal('50'),
             effect() {
                 let effect = player.lf.points.add(1).pow(0.5).min(50)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
@@ -84,9 +107,10 @@ addLayer("w", {
         15: {
             title: "Boost Those Fragments!",
             description: "Boost Layer Fragments based on Layer Points",
-            cost: new Decimal('250'),
+            cost: new Decimal('125'),
             effect() {
                 let effect = player.l.points.add(1).pow(0.5).min(10)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
@@ -98,17 +122,19 @@ addLayer("w", {
             cost: new Decimal('1250'),
             effect() {
                 let effect = player.w.points.add(1).pow(0.45).min(50)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
         },
         22: {
-            title: "Wattage",
+            title: "Feedback Loop",
             description: "Prestige points are boosted based on Watts",
             unlocked(){if (hasUpgrade('lf', 15)) return true; else return false},
             cost: new Decimal('10000'),
             effect() {
                 let effect = player.w.points.add(1).pow(0.15).min(50)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
@@ -120,6 +146,7 @@ addLayer("w", {
             cost: new Decimal('20000'),
             effect() {
                 let effect = player.l.points.add(1).pow(0.15).min(50)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
@@ -131,6 +158,7 @@ addLayer("w", {
             cost: new Decimal('1e6'),
             effect() {
                 let effect = player.w.points.add(1).pow(0.2).min(500)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
@@ -142,6 +170,7 @@ addLayer("w", {
             cost: new Decimal('2.5e6'),
             effect() {
                 let effect = player.w.points.add(1).pow(0.025).min(5)
+                if (hasUpgrade('s', 42)) effect = effect.times('100')
                 return (effect)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x"},
