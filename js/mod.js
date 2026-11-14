@@ -75,7 +75,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		<br>
 		...there is something among the files... keep the contents. secret. from the others. or just dont open them... (this message was added in 0.1.0)<br>`
 
-let winText = `EVERCHANGING LAYERS, EVERLASTING TIMEFRAMES.`
+let winText = `ETERNITY AWAITS.`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -145,7 +145,7 @@ var displayThings = [
 	function(){if(player.epsilon > new Decimal(0) || player.eps.unlocked == true){return '<h2>You have ' + format(player.epsilon) + ' Epsilon</h2>'} else return "hi, i will change later! (not in this update though)"},
 ]
 function isEndgame() {
-	return (hasUpgrade('s', 25) && player.points.gte('5e50'))
+	return (hasUpgrade('l', 31))
 }
 
 

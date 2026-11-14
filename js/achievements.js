@@ -157,7 +157,7 @@ addLayer("a", {
         34: {
             name: "Forgotten? No no no. Its been waiting.",
             done() {
-                return (hasUpgrade('lf', 45) && hasUpgrade('s', 45))
+                return (hasUpgrade('lf', 45) && hasUpgrade('s', 45) && hasUpgrade('l', 31))
             },
             tooltip: "It Awaits.",
             doneTooltip: "Its Been Waiting for a Long Time.",
@@ -165,7 +165,7 @@ addLayer("a", {
                 addPoints('a', 1)
             },
         },
-        35: {
+        36: {
             name: "Approaching a End.",
             done() {
                 return (player.points.gte(new Decimal('1e100')))
