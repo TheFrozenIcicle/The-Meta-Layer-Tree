@@ -70,7 +70,7 @@ addLayer("s", {
     doReset(resettingLayer) {
         let keep = ["time","SliderOne","SliderTwo","AlphaSlider1","AlphaSlider2","AlphaDecider","AlphaClickable","BetaClickable","Overclock"];
         let keptUpgrades = [];
-        if (layers[resettingLayer].layer == 'lf') { 
+        if (layers[resettingLayer].layer == 'lf' || layers[resettingLayer].layer == 'l' || layers[resettingLayer].layer == 'w') { 
             if (hasUpgrade('s', 25)) keptUpgrades.push(25)
             if (hasUpgrade('s', 33)) keptUpgrades.push(33)
             if (hasUpgrade('s', 35)) keptUpgrades.push(35)
@@ -79,7 +79,7 @@ addLayer("s", {
             layerDataReset(this.layer, keep);
             player[this.layer].upgrades.push(...keptUpgrades)
         }
-        else if (layers[resettingLayer].row > this.layer) {
+        else if (layers[resettingLayer].row > this.row) {
             layerDataReset(this.layer, keep);
         }
         //anything u place here is for keeping specific things, like if(hasUpgrade('x',99))player.y.upgrades.push(11) if that makes sense
@@ -336,7 +336,7 @@ addLayer("s", {
             title: "Half a Piece",
             description: "Get the other. Expand what should.",
             unlocked() {if (hasUpgrade('lf', 43)) return true; else return false},
-            cost: new Decimal('1e57'),
+            cost: new Decimal('1e55'),
             tooltip: "This Upgrade also boosts Layer Fragments by 50"
         },
 },

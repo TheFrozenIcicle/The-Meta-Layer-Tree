@@ -17,14 +17,14 @@ addLayer("w", {
     doReset(resettingLayer) {
         let keep = [];
         let keptUpgrades = [];
-        if (resettingLayer == "l") { 
+        if (resettingLayer == "l" || layers[resettingLayer].layer == 's') { 
             if (hasUpgrade('lf', 14)) keep.push('upgrades')
             if (hasUpgrade('w', 13)) keptUpgrades.push(13)
             if (hasUpgrade('w', 15)) keptUpgrades.push(15)
             layerDataReset(this.layer, keep);
             player[this.layer].upgrades.push(...keptUpgrades)
         }
-        else if (layers[resettingLayer].row > this.layer) {
+        else if (layers[resettingLayer].row > this.row) {
             layerDataReset(this.layer, keep);
         }
         //anything u place here is for keeping specific things, like if(hasUpgrade('x',99))player.y.upgrades.push(11) if that makes sense
