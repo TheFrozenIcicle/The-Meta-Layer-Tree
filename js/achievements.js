@@ -24,26 +24,6 @@ addLayer("a", {
             },
         },
         12: {
-            name: "Second Row.",
-            done() {
-                return (hasUpgrade('p', 21))
-            },
-            tooltip: "Get the First, Second row Prestige Upgrade.",
-            onComplete() {
-                addPoints('a', 1)
-            },
-        },
-        13: {
-            name: "100 Prestige Points!",
-            done() {
-                return player.p.points.gte(100)
-            },
-            tooltip: "Get 100 Prestige Points. Reward: 2.5x Points",
-            onComplete() {
-                addPoints('a', 1)
-            },
-        },
-        14: {
             name: "what",
             done() {
                 return player.l.unlocked
@@ -54,92 +34,144 @@ addLayer("a", {
                 addPoints('a', 1)
             },
         },
-        15: {
-            name: "Wait Wait, Isn't this a bit TOO strong?",
+        13: {
+            name: "Layers upon Layers.",
             done() {
-                return (hasUpgrade('l', 12))
+                return (hasUpgrade('l', 21))
             },
-            tooltip: "Purchase the second Layer Upgrade.",
+            tooltip: "Unlock another Layer from ???'s. This is getting more confusing to say every second...",
+            doneTooltip: "Unlock another Layer from Layers. This is getting more confusing to say every second...",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        14: {
+            name: "OH NO THE INFLATION!",
+            done() {
+                return (hasUpgrade('p', 14))
+            },
+            tooltip: "Purchase the Fourth Prestige upgrade in the First Row. Reward: 2.5x ??? Points",
+            doneTooltip: "Purchase the Fourth Prestige upgrade in the First Row. Reward: 2.5x Layer Points",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        15: {
+            name: "Slowing Down, Finally",
+            done() {
+                return (hasUpgrade('lf', 13))
+            },
+            tooltip: "Third ??? Upgrade, Inflation is slowing down.",
+            doneTooltip: "Third Layer Fragments Upgrade, Inflation is slowing down.",
             onComplete() {
                 addPoints('a', 1)
             },
         },
         21: {
-            name: "Another Powerful Upgrade!",
-            done() {
-                return (hasUpgrade('l', 15))
-            },
-            tooltip: "Purchase the Fifth Layer Upgrade.",
-            onComplete() {
-                addPoints('a', 1)
-            },
-        },
-        22: {
-            name: "Layers upon Layers.",
-            done() {
-                return (hasUpgrade('l', 21))
-            },
-            tooltip: "Unlock another Layer from Layers. This is getting more confusing to say every second...",
-            onComplete() {
-                addPoints('a', 1)
-            },
-        },
-        23: {
-            name: "Me when pow(1.1)",
-            done() {
-                return (hasUpgrade('lf', 12))
-            },
-            tooltip: "Get the second upgrade in the Layer Fragments Layer. Reward: 1.5x Layer Points",
-            onComplete() {
-                addPoints('a', 1)
-            },
-        },
-        24: {
-            name: "OH NO THE INFLATION!",
-            done() {
-                return (hasUpgrade('p', 14))
-            },
-            tooltip: "Purchase the Fourth Prestige upgrade in the First Row. Reward: 2.5x Layer Points",
-            onComplete() {
-                addPoints('a', 1)
-            },
-        },
-        25: {
-            name: "Slowing Down, Finally",
-            done() {
-                return (hasUpgrade('lf', 13))
-            },
-            tooltip: "Third Layer Fragments Upgrade, Inflation is slowing down.",
-            onComplete() {
-                addPoints('a', 1)
-            },
-        },
-        31: {
             name: "The heck is this?",
             done() {
-                return player.w.points.gte(3)
+                return player.w.points.gte(1)
             },
             tooltip: "We aren't powering ANYTHING are we? Moreover, WHERE ARE WE GETTING THIS POWER???",
             onComplete() {
                 addPoints('a', 1)
             },
         },
-        32: {
-            name: "What have you done.",
+        22: {
+            name: "Lossless Resets",
             done() {
-                return (hasUpgrade('w', 15))
+                return (hasUpgrade('lf', 14))
             },
-            tooltip: "We might be doomed if we get a uncapped boost based on layer fragments.",
+            tooltip: "Never lose ??? Upgrades on any current resets",
+            doneTooltip: "Never lose Watt upgrades. You will still lose the first layer of Prestige Upgrades on LF reset though.",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        23: {
+            name: "oh dear.",
+            done() {
+                return (hasUpgrade('w', 25))
+            },
+            tooltip: "the ???'s are boosting EVERYTHING, now... :fearful:",
+            doneTooltip: "the watts are mboosting EVERYTHING, now... :fearful:",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        24: {
+            name: "Further Fragmentation",
+            done() {
+                return (hasUpgrade('lf', 21))
+            },
+            tooltip: "This... Doesn't even make Sense? Reward: 2x ???'s",
+            doneTooltip: "This... Doesn't even make Sense? Reward: 2x Watts",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        25: {
+            name: "Buttons :)",
+            done() {
+                return (hasUpgrade('s', 15))
+            },
+            tooltip: "ok but seriously, what do these buttons do? Reward: 5x ???'s",
+            doneTooltip: "ok but seriously, what do these buttons do? Reward: 5x Watts",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        31: {
+            name: "wha- MORE?!",
+            done() {
+                return (hasUpgrade('s', 25))
+            },
+            tooltip: "are we serious?!",
+            doneTooltip: "More... Layer Fragment Upgrades... This layer is SO annoying...",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        32: {
+            name: "THE LAYERS ARE EXPANDING",
+            done() {
+                return (hasUpgrade('lf', 35))
+            },
+            tooltip: "NOOOO",
+            doneTooltip: "WHY DOES THIS KEEP HAPPENING WE CANT KEEP GETTING AWAY WITH THIS",
             onComplete() {
                 addPoints('a', 1)
             },
         },
         33: {
-            name: "Lossless Resets",
+            name: "FURTHERING INTO A SPLIT.",
             done() {
-                return (hasUpgrade('lf', 14))
+                return (hasUpgrade('p', 45))
             },
-            tooltip: "Somehow never lose Watt and Prestige Upgrades no matter What reset you do. (I have no idea how to fix it so im leaving it ingame for now so have fun!!! please dont spam it i beg please)",
+            tooltip: "FARTHER, FASTER.",
+            doneTooltip: "GO. FARTHER. DO IT. FASTER.",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        34: {
+            name: "Forgotten? No no no. Its been waiting.",
+            done() {
+                return (hasUpgrade('lf', 45) && hasUpgrade('s', 45) && hasUpgrade('l', 31))
+            },
+            tooltip: "It Awaits.",
+            doneTooltip: "Its Been Waiting for a Long Time.",
+            onComplete() {
+                addPoints('a', 1)
+            },
+        },
+        36: {
+            name: "Approaching a End.",
+            done() {
+                return (player.points.gte(new Decimal('1e100')))
+            },
+            tooltip: "Is it worth it?",
+            doneTooltip: "Something tells you this path you are down has already been tread.",
             onComplete() {
                 addPoints('a', 1)
             },
