@@ -1,26 +1,28 @@
 let modInfo = {
-	name: "The Layered Tree",
+	name: "The Meta Layer Tree",
 	id: "1stIcyDev",
 	author: "TheIcyIcicle",
 	pointsName: "Points",
-	modFiles: ["prestige.js", "achievements.js", "power.js", "layers.js", "layerfragments.js", "tree.js"],
+	modFiles: ["prestige.js", "achievements.js", "power.js", "system.js", "layers.js", "layerfragments.js", "tree.js", "anotherway.js", "thepathlongfollowed.js"],
 
 	discordName: "TheIcyIcicle",
 	discordLink: "",
 	initialStartPoints: new Decimal (0), // Used for hard resets and new players
 	offlineLimit: 4,  // In hours
 }
+function Rand(min, max, int=true) {
+	if (min > max) {[min, max] = [max, min];}
+	if (int) return Math.floor(Math.random()*(max-min+1))+min;
+	else return Math.random()*(max-min)+min
+}
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0.1",
-	name: "POWAHHH",
+	num: "0.1.0",
+	name: "WHERE DID THIS 'Meta' COME FROM? WE AREN'T META! ...wait a second",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-<<<<<<< Updated upstream
-	<h3>v0.0.1</h3><br>
-=======
 	<h2>A.B.C Cookie Style. ...mostly <br>
 	A = HUGE update, B = Big Update, C = Normal Update,</h2><br>
 	<h3>Hotfixes will be kept in the next update's changelog from here on out. (0.1.0)</h3><br>
@@ -33,7 +35,6 @@ let changelog = `<h1>Changelog:</h1><br>
 		- Rename from 'The Layered Tree' to 'The Meta Layer Tree' as result of the poll.<br>
 		- GUYS. GUYS I DIDN'T MAKE SIGMA67LER IN THEMES. GUYS. I DIDN'T DO THIS. IT JUST APPEARED AFTER A PLAYTEST. I CANT REMOVE IT. SOMEONE HELP, PLEASE!!!<br>
 	<h3>v0.0.1 POWAHHH</h3><br>
->>>>>>> Stashed changes
 		- So begins the Power Layer.<br>
 		- Random Bug with Upgrade Keeping you get to have for now!<br>
 		- Three new achievements (literally nothing)<br>
