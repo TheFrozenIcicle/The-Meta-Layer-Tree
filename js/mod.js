@@ -18,7 +18,22 @@ let VERSION = {
 }
 
 let changelog = `<h1>Changelog:</h1><br>
+<<<<<<< Updated upstream
 	<h3>v0.0.1</h3><br>
+=======
+	<h2>A.B.C Cookie Style. ...mostly <br>
+	A = HUGE update, B = Big Update, C = Normal Update,</h2><br>
+	<h3>Hotfixes will be kept in the next update's changelog from here on out. (0.1.0)</h3><br>
+		<br>
+		<br>
+	<h3>v0.1.0 LAYERS</h3><br>
+		- More. Layer. Content.<br>
+		- Timewalls :(<br>
+		- Quite a few upgrades.<br>
+		- Rename from 'The Layered Tree' to 'The Meta Layer Tree' as result of the poll.<br>
+		- GUYS. GUYS I DIDN'T MAKE SIGMA67LER IN THEMES. GUYS. I DIDN'T DO THIS. IT JUST APPEARED AFTER A PLAYTEST. I CANT REMOVE IT. SOMEONE HELP, PLEASE!!!<br>
+	<h3>v0.0.1 POWAHHH</h3><br>
+>>>>>>> Stashed changes
 		- So begins the Power Layer.<br>
 		- Random Bug with Upgrade Keeping you get to have for now!<br>
 		- Three new achievements (literally nothing)<br>
