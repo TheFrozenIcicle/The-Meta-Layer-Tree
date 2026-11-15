@@ -21,7 +21,7 @@ let VERSION = {
 	num: "0.1.0",
 	name: "WHERE DID THIS 'Meta' COME FROM? WE AREN'T META! ...wait a second",
 }
-
+// hotfixes 0.1.0: merge disaster.
 let changelog = `<h1>Changelog:</h1><br>
 	<h2>A.B.C Cookie Style. ...mostly <br>
 	A = HUGE update, B = Big Update, C = Normal Update,</h2><br>
@@ -54,6 +54,11 @@ function getStartPoints(){
     return new Decimal(modInfo.initialStartPoints)
 }
 
+// You can add non-layer related variables that should to into "player" and be saved here, along with default values
+function addedPlayerData() { return {
+	epsilon: new Decimal('0')
+}}
+
 // Determines if it should show points/sec
 function canGenPoints(){
 	return true
@@ -84,6 +89,20 @@ function getPointGen() {
 	return gain
 }
 
+//function canGenEpsilon(){
+	//if (getPointGen().lte(new Decimal(0.001)) || player.epsilon.lte(new Decimal(0))){return false}
+	//else return true
+//}
+
+function getEpsilonGen() {
+	//if(!canGenEpsilon())
+		return new Decimal(0)
+
+	//let Epgain = new Decimal(0.5)
+	//if (hasUpgrade('eps', 12)) Epgain = Epgain.add('2').times('5')
+	//return Epgain
+}
+
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
 function addedPlayerData() { return {
 }}
@@ -94,7 +113,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return (hasUpgrade('lf', 14) && player.points.gte('5e8'))
+	return (hasUpgrade('s', 31))
 }
 
 
