@@ -38,7 +38,7 @@ addLayer("eps", {
         return gain
     },
     getNextAt() {
-        return player.epsilon.times(player.eps.sparks).max(0)
+        //return player.epsilon.times(player.eps.sparks).max(0)
     },
     canReset() {
         if (player.points==new Decimal('0')) return true; else return false
