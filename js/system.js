@@ -367,7 +367,7 @@ addLayer("s", {
                 "blank",
                 "blank",
                 ["display-text",
-                    function(){if (hasUpgrade('lf',33) && player.s.Overclock >=2) return ("OVERCLOCKING ENABLED AT " + format(player.s.Overclock) + "x POWER!")
+                    function(){if (hasUpgrade('lf',33) && player.s.Overclock >=2) return ("OVERCLOCKING ENABLED AT " + formatWhole(player.s.Overclock) + "x POWER!")
                         else if (hasUpgrade('lf',33) && player.s.Overclock == 1) return "NORMAL HARDWARE SPEEDS."
                         else if (hasUpgrade('lf',33) && player.s.Overclock == 0) return "HARDWARE DISABLED"
                     }
