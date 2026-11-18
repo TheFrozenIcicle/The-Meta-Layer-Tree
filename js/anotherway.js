@@ -29,16 +29,16 @@ addLayer("eps", {
     resource: "Infinitesimal Sparks", // Name of prestige currency
     baseResource: "Epsilon", // Name of resource prestige is based on
     baseAmount() {return player.epsilon}, // Get the current amount of baseResource
-    type: "custom", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    getResetGain(gain) {
-        if (player.epsilon >= 1) {
-            gain = new Decimal(1)
-        }
-        else gain = new Decimal(0)
-        return gain
-    },
+    type: "none", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    //getResetGain(gain) {
+      //  if (player.epsilon.lte(1)) {
+        //    gain = new Decimal(1)
+        //}
+        //else gain = new Decimal(0)
+        //return gain
+    //},
     getNextAt() {
-        return player.epsilon.times(player.eps.sparks).max(0)
+        //return player.epsilon.times(player.eps.sparks).max(0)
     },
     canReset() {
         if (player.points==new Decimal('0')) return true; else return false

@@ -21,7 +21,7 @@ let VERSION = {
 	num: "0.1.0",
 	name: "WHERE DID THIS 'Meta' COME FROM? WE AREN'T META! ...wait a second",
 }
-
+// hotfixes 0.1.0: merge disaster.
 let changelog = `<h1>Changelog:</h1><br>
 	<h2>A.B.C Cookie Style. ...mostly <br>
 	A = HUGE update, B = Big Update, C = Normal Update,</h2><br>
@@ -29,7 +29,7 @@ let changelog = `<h1>Changelog:</h1><br>
 		<br>
 		<br>
 	<h3>v0.1.0 LAYERS</h3><br>
-		- More. Layers.<br>
+		- More. Layer. Content.<br>
 		- Timewalls :(<br>
 		- Quite a few upgrades.<br>
 		- Rename from 'The Layered Tree' to 'The Meta Layer Tree' as result of the poll.<br>
@@ -38,44 +38,13 @@ let changelog = `<h1>Changelog:</h1><br>
 		- So begins the Power Layer.<br>
 		- Random Bug with Upgrade Keeping you get to have for now!<br>
 		- Three new achievements (literally nothing)<br>
-	<h3>v0.0.0 The Start</h3><br>
+	<h3>v0.0.0</h3><br>
 		- Three Layers.<br>
 		- Multiple Upgrades.<br>
 		- Probably some inflation<br>
-		- Begin the Layers.<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		<br>
-		...there is something among the files... keep the contents. secret. from the others. or just dont open them... (this message was added in 0.1.0)<br>`
+		- Begin the Layers.`
 
-let winText = `ETERNITY AWAITS.`
+let winText = `More New Layer Content When?`
 
 // If you add new functions anywhere inside of a layer, and those functions have an effect when called, add them here.
 // (The ones here are examples, all official functions are already taken care of)
@@ -87,7 +56,7 @@ function getStartPoints(){
 
 // You can add non-layer related variables that should to into "player" and be saved here, along with default values
 function addedPlayerData() { return {
-	epsilon: Decimal.dZero
+	epsilon: new Decimal('0')
 }}
 
 // Determines if it should show points/sec
@@ -101,49 +70,48 @@ function getPointGen() {
 		return new Decimal(0)
 
 	let gain = new Decimal(1)
-	// Additives
-	if (hasUpgrade('p', 11)) gain = gain.add('1.5')
-	// Achievements
-	if (hasAchievement('a', 13)) gain = gain.times('2.5')
-	// Prestige Upgrades
+	// additives
+	if (hasUpgrade('p', 11)) gain = gain.add(1.5)
+	// achievements
+	if (hasAchievement('a', 13)) gain = gain.times(2.5)
+	// layers
+	if (hasUpgrade('l', 12)) gain = gain.times(5)
+	if (hasUpgrade('l', 13)) gain = gain.times(1.75)
+	if (hasUpgrade('l', 14)) gain = gain.times(2.5)
+	if (hasUpgrade('l', 15)) gain = gain.times(5)
+	// prestige
 	if (hasUpgrade('p', 12)) gain = gain.times(upgradeEffect('p', 12))
 	if (hasUpgrade('p', 23)) gain = gain.times(upgradeEffect('p', 23))
-	// Power Upgrades
-	if (hasUpgrade('w', 11)) gain = gain.times('1.25')
-	// System
-	// blank
-	// Layer Upgrades
-	if (hasUpgrade('l', 12)) gain = gain.times('5')
-	if (hasUpgrade('l', 13)) gain = gain.times('1.75')
-	if (hasUpgrade('l', 14)) gain = gain.times('2.5')
-	if (hasUpgrade('l', 15)) gain = gain.times('5')
-	// Layer Fragment Upgrades
-	if (hasChallenge('lf', 11)) gain = gain.times('1e9')
-	// Exponents
-	if (hasUpgrade('lf', 12)) gain = gain.pow('1.1')
-	if (hasUpgrade('lf', 22)) gain = gain.pow('1.1')
-	if (hasUpgrade('s', 14)) gain = gain.pow('1.35')
+	// power
+	if (hasUpgrade('w', 11)) gain = gain.times(1.25)
+	// exponents
+	if (hasUpgrade('lf', 12)) gain = gain.pow(1.1)
 	return gain
 }
 
-function canGenEpsilon(){
-	if (getPointGen().lte(new Decimal(0.001)) || player.epsilon.lte(new Decimal(0))){return false}
-	else return true
-}
+//function canGenEpsilon(){
+	//if (getPointGen().lte(new Decimal(0.001)) || player.epsilon.lte(new Decimal(0))){return false}
+	//else return true
+//}
 
 function getEpsilonGen() {
-	if(!canGenEpsilon())
+	//if(!canGenEpsilon())
 		return new Decimal(0)
 
-	let Epgain = new Decimal(0.5)
-	if (hasUpgrade('eps', 12)) Epgain = Epgain.add('2').times('5')
-	return Epgain
+	//let Epgain = new Decimal(0.5)
+	//if (hasUpgrade('eps', 12)) Epgain = Epgain.add('2').times('5')
+	//return Epgain
 }
+
+// You can add non-layer related variables that should to into "player" and be saved here, along with default values
+function addedPlayerData() { return {
+}}
 
 // Display extra things at the top of the page
 var displayThings = [
-	function(){if(player.epsilon > new Decimal(0) || player.eps.unlocked == true){return '<h2>You have ' + format(player.epsilon) + ' Epsilon</h2>'} else return "hi, i will change later! (not in this update though)"},
 ]
+
+// Determines when the game "ends"
 function isEndgame() {
 	return (hasUpgrade('l', 31))
 }
